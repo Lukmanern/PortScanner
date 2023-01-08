@@ -13,8 +13,8 @@ import (
 func main() {
 	start := time.Now()
 	runner("facebook.com")
-
-	fmt.Println("\nScan duration: " + time.Since(start).String())
+	finish := time.Since(start)
+	fmt.Println("\nScan duration: " + finish.String())
 }
 
 func ErrorHandler(err error) {
@@ -23,7 +23,7 @@ func ErrorHandler(err error) {
 	}
 }
 
-// runner function takes in a hostname 
+// runner func takes in a hostname 
 // as an argument and performs a port scan on it
 func runner(host string) {
 	// create a WaitGroup to manage the goroutines
@@ -44,7 +44,9 @@ func runner(host string) {
 	wg.Wait() 
 }
 
-// checkingHost function takes in a hostname and returns its IP addresses
+// checkingHost func takes in a hostname 
+// and returns its IP addresses 
+// (the ip addresses is can/ possible more than one)
 func checkingHost(host string) ([]net.IP, error) {
 	// get the IP addresses of the host
 	ip, err := net.LookupIP(host) 
@@ -52,7 +54,7 @@ func checkingHost(host string) ([]net.IP, error) {
 	return ip, nil
 }
 
-// scan function performs a port scan on a specific host and port
+// scan func performs a port scan on a specific host and port
 func scan(host, port, name string, wg *sync.WaitGroup) {
 	// decrement the WaitGroup counter and
 	// try to establish a connection 
