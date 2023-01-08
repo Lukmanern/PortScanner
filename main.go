@@ -13,9 +13,8 @@ import (
 func main() {
 	start := time.Now()
 	runner("facebook.com")
-	finish := time.Since(start)
 
-	fmt.Println("\nScan duration: " + finish.String())
+	fmt.Println("\nScan duration: " + time.Since(start).String())
 }
 
 func ErrorHandler(err error) {
