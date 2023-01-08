@@ -44,7 +44,6 @@ var common = map[int]string{
 	8443: "https-alt",
 }
 
-var HOST string = "facebook.com"
 
 func main() {
 	start := time.Now()
@@ -59,31 +58,44 @@ func ErrorHandler(err error) {
 	}
 }
 
+// runner function takes in a hostname 
+// as an argument and performs a port scan on it
 func runner(host string) {
-	var wg sync.WaitGroup
-	var err error
-	_, err = checkingHost(host)
+	// create a WaitGroup to manage the goroutines
+	var wg sync.WaitGroup 
+	// get the IP addresses of the host
+	ip, err := checkingHost(host) 
 	ErrorHandler(err)
+	fmt.Println("total IP :", len(ip), "->", ip)
 
 	for port, name := range common {
+		// add 1 to the WaitGroup counter
 		wg.Add(1)
-		go scan(strconv.Itoa(port), name, &wg)
+		// launch a goroutine to scan the current port
+		go scan(host, strconv.Itoa(port), name, &wg) 
 	}
-	wg.Wait()
+	// wait for all goroutines to finish
+	wg.Wait() 
 }
 
+// checkingHost function takes in a hostname and returns its IP addresses
 func checkingHost(host string) ([]net.IP, error) {
-	var ip []net.IP
-	ip, err := net.LookupIP(host)
+	// get the IP addresses of the host
+	ip, err := net.LookupIP(host) 
 	ErrorHandler(err)
 
 	return ip, nil
 }
 
-func scan(port, name string, wg *sync.WaitGroup) {
+// scan function performs a port scan on a specific host and port
+func scan(host, port, name string, wg *sync.WaitGroup) {
+	// decrement the WaitGroup counter
 	defer wg.Done()
-	_, err := net.DialTimeout("tcp", HOST+":"+port, 1*time.Second)
+	// try to establish a connection to the host and port
+	_, err := net.DialTimeout("tcp", host+":"+port, 1*time.Second)
 	if err == nil {
+		// if the connection was successful, 
+		// print the port and name
 		fmt.Println(port, name)
 	}
 }
