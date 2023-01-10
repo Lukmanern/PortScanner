@@ -2,10 +2,6 @@
 
 This project is a simple port scanner written in Go. It takes in a hostname as an argument and performs a port scan on it. It also has a list of common port names and numbers that it uses to scan.
 
-## This project using `net.DialTimeout`
-
-You need to read [this blog](https://www.educative.io/answers/what-is-the-netdialtimeout-function-in-golang) to deep understanding how `net.DialTimeout` works.
-
 ## Customizing the scan
 
 You can customize the ports that are being scanned by modifying the ports.GetPort function. This function returns a map of port numbers to port names that the program uses to perform the scan. You can add or remove entries from this map to include or exclude specific ports in the scan.
