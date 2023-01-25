@@ -3,7 +3,6 @@ package main
 import (
 	"PortScanner/ports"
 	"fmt"
-	"log"
 	"net"
 	"strconv"
 	"sync"
@@ -12,14 +11,14 @@ import (
 
 func main() {
 	start := time.Now()
-	runner("facebook.com")
+	runner("103.176.78.158")
 	finish := time.Since(start)
 	fmt.Println("\nScan duration: " + finish.String())
 }
 
 func ErrorHandler(err error) {
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 }
 
@@ -64,6 +63,6 @@ func scan(host, port, name string, wg *sync.WaitGroup) {
 	if err == nil {
 		// if the connection was successful, 
 		// print the port and name
-		fmt.Println(port, name)
+		fmt.Println(" ", port, name)
 	}
 }
