@@ -1,7 +1,7 @@
 package ports
 
 // commonly used ports
-var common = map[int]string{
+var commons = map[int]string{
 	7:    "echo",
 	20:   "ftp",
 	21:   "ftp",
@@ -35,6 +35,6 @@ var common = map[int]string{
 	8443: "https-alt",
 }
 
-func GetPort() map[int]string {
-	return common
+func GetPorts() map[int]string {
+	return commons
 }

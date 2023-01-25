@@ -32,7 +32,7 @@ func runner(host string) {
 	ErrorHandler(err)
 	fmt.Println("total IP :", len(ip), "->", ip)
 
-	ports := ports.GetPort()
+	ports := ports.GetPorts()
 	for port, name := range ports {
 		// add 1 to the WaitGroup counter and
 		// launch a goroutine to scan the current port
