@@ -4,7 +4,7 @@ This project is a simple port scanner written in Go. It takes in a hostname as a
 
 ## Customizing the scan
 
-You can customize the ports that are being scanned by modifying the ports.GetPort function. This function returns a map of port numbers to port names that the program uses to perform the scan. You can add or remove entries from this map to include or exclude specific ports in the scan.
+You can customize the ports that are being scanned by modifying the ports.`GetPorts` function, you can add more ports, [check this](https://github.com/maraisr/ports-list). This function returns a map of port numbers to port names that the program uses to perform the scan. You can add or remove entries from this map to include or exclude specific ports in the scan.
 
 ## Functions
 
