@@ -15,3 +15,7 @@ You can customize the ports that are being scanned by modifying the ports.`GetPo
 `checkingHost()` : Takes in a hostname and returns its IP addresses.
 
 `scan()` : Performs a port scan on a specific host and port. It tries to establish a connection to the host and port and if the connection is successful, it prints the port and name.
+
+## Common
+
+![networking_protocols.png](https://raw.githubusercontent.com/Lukmanern/PortScanner/master/networking_protocols.png)
